@@ -1,3 +1,3 @@
-A simple node/webpack js project template.
+# League Client Log Parser
 
-For Webpack info: https://webpack.github.io/docs/usage.html
+Parses LeagueClient.log, sorting the data into useful chunks.
