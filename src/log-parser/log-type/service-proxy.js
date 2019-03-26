@@ -30,7 +30,12 @@ ServiceProxyLog.prototype.parseLog = function() {
       this.messageId = null;
     }
   } else if (serviceProxyLogState === 'Fulfilled') {
-    this.messageId = message.substring(message.indexOf('(') + 1, message.indexOf(')'));
+    if (message.includes('.')) {
+      this.returnMethodName = message.substring(message.lastIndexOf('.') + 1);
+      this.serviceName = message.substring(message.lastIndexOf(': ') + 2, message.lastIndexOf('.'));
+    } else {
+      this.messageId = message.substring(message.indexOf('(') + 1, message.indexOf(')'));
+    }
   }
   this.logState = serviceProxyLogState;
 }
@@ -44,6 +49,13 @@ ServiceProxyLog.prototype.getMethodName = function() {
     this.parseLog();
   }
   return this.methodName;
+}
+
+ServiceProxyLog.prototype.getReturnMethodName = function() {
+  if (this.logState === '') {
+    this.parseLog();
+  }
+  return this.returnMethodName;
 }
 
 ServiceProxyLog.prototype.getServiceName = function() {
