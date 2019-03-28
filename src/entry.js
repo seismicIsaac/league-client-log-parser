@@ -5,8 +5,8 @@ import {parseFileText} from './log-parser/parse';
 
 require('./style.css');
 
-var fileModel;
-var LeagueParserModel = {
+let fileModel;
+const LeagueParserModel = {
   parsedFiles: {
     //fileName: parsedFile
   }
